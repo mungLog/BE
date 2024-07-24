@@ -1,16 +1,17 @@
 package com.example.munglog.User.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 public class User {
 
@@ -23,5 +24,12 @@ public class User {
     private String password;
     private String email;
     private String phone;
-    private boolean Roles;
+    private boolean roles;
+
+    @ManyToMany
+    @JoinTable(
+            name = "UserGroups",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<Family> groups;
 }

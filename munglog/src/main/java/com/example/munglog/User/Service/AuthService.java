@@ -26,7 +26,7 @@ public class AuthService {
         public String login(LoginRequestDto dto) {
             String userid = dto.getUserid();
             String password = dto.getPassword();
-            User member = userRepository.findUserByuserId(userid);
+            User member = userRepository.findUserByUserid(userid);
             if(member == null) {
                 throw new UsernameNotFoundException("아이디가 존재하지 않습니다.");
             }

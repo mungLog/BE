@@ -1,6 +1,5 @@
 package com.example.munglog.User.DTO;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginRequestDto {
 
-    @NotNull(message = "이메일 입력은 필수입니다.")
-    @Email
+    @NotNull
     private String userid;
 
 
