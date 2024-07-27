@@ -1,6 +1,7 @@
 package com.example.munglog.User.Controller;
 
 import com.example.munglog.User.DTO.*;
+import com.example.munglog.User.Domain.FamilyRequest;
 import com.example.munglog.User.Domain.User;
 import com.example.munglog.User.Repository.UserRepository;
 import com.example.munglog.User.Service.AuthService;
@@ -15,18 +16,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/user")
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
 public class UserController {
 
     private final UserService userService;
     private final UserRepository userRepository;
 
-    @PostMapping("/signup")
+    @PostMapping("/register")
     public ResponseEntity<CommonResponse> join(@RequestBody UserDto userDTO){
         userService.save(userDTO);
         CommonResponse res = new CommonResponse(
@@ -78,5 +80,20 @@ public class UserController {
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found: " + userId);
         }
+    }
+
+    @PostMapping("/{userId}/families/{familyId}")
+    public User addUserToFamily(@PathVariable Long userId, @PathVariable Long familyId) {
+        return userService.addUserToFamily(userId, familyId);
+    }
+
+    @PostMapping("/{userId}/request-family/{familyId}")
+    public FamilyRequest requestFamilyMembership(@PathVariable Long userId, @PathVariable Long familyId) {
+        return userService.requestFamilyMembership(userId, familyId);
+    }
+
+    @GetMapping("/search")
+    public List<User> searchUsers(@RequestParam String username) {
+        return userService.searchUsers(username);
     }
 }

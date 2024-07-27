@@ -3,6 +3,7 @@ package com.example.munglog.User.Domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,10 +15,20 @@ public class Family {
 
     private String name;
 
-//    @OneToMany(mappedBy = "group")
-//    private Set<Animal> animals;
+    @ManyToMany
+    @JoinTable(
+            name = "user_family",
+            joinColumns = @JoinColumn(name = "family_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> users = new HashSet<>();
 
-    @ManyToMany(mappedBy = "groups")
-    private Set<User> users;
+    //@OneToMany(mappedBy = "family", cascade = CascadeType.ALL)
+    //private Set<Animal> animals = new HashSet<>();
+
+
+    //@ManyToOne
+  //  @JoinColumn(name = "family_id")
+//    private Family family;
 
 }

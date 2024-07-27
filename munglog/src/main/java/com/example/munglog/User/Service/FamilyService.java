@@ -5,15 +5,26 @@ import com.example.munglog.User.Repository.FamilyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class FamilyService {
-    @Autowired
-    private FamilyRepository familyRepository;
+    @Service
+    public class FamilyService {
 
-    public Family findGroupById(Long id) {
-        return familyRepository.findById(id).orElse(null);
-    }
+        @Autowired
+        private FamilyRepository familyRepository;
 
-    // Other CRUD methods
+//        @Autowired
+//        private AnimalRepository animalRepository;
+//
+//        public Animal addAnimalToFamily(Long familyId, Animal animal) {
+//            return familyRepository.findById(familyId).map(family -> {
+//                animal.setFamily(family);
+//                return animalRepository.save(animal);
+//            }).orElse(null);
+//        }
+//
+//        public Set<Animal> getFamilyAnimals(Long familyId) {
+//            return familyRepository.findById(familyId)
+//                    .map(Family::getAnimals)
+//                    .orElse(null);
+//        }
 }
 
