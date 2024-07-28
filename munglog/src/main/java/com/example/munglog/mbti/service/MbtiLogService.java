@@ -3,6 +3,7 @@ package com.example.munglog.mbti.service;
 import com.example.munglog.mbti.domain.MbtiLog;
 import com.example.munglog.mbti.dto.MbtiLogDTO;
 import com.example.munglog.mbti.repository.MbtiLogRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

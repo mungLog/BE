@@ -1,5 +1,6 @@
 package com.example.munglog.mbti.dto;
 
+
 public class MbtiLogDTO {
 
     private Long id;

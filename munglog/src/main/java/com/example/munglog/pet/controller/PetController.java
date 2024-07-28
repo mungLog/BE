@@ -1,6 +1,5 @@
 package com.example.munglog.pet.controller;
 
-
 import com.example.munglog.pet.dto.PetDTO;
 import com.example.munglog.pet.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;

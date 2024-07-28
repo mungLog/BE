@@ -1,6 +1,5 @@
 package com.example.munglog.User.Domain;
 
-import com.example.munglog.pet.domain.Pet;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.HashSet;

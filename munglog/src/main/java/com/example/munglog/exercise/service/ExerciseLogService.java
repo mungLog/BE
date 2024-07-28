@@ -3,6 +3,7 @@ package com.example.munglog.exercise.service;
 import com.example.munglog.exercise.domain.ExerciseLog;
 import com.example.munglog.exercise.dto.ExerciseLogDTO;
 import com.example.munglog.exercise.repository.ExerciseLogRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

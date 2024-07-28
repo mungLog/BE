@@ -1,5 +1,6 @@
 package com.example.munglog.community.controller;
 
+
 import com.example.munglog.community.dto.CommunityPostDTO;
 import com.example.munglog.community.service.CommunityPostService;
 import org.springframework.beans.factory.annotation.Autowired;

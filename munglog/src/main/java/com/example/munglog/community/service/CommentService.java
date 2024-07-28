@@ -3,6 +3,7 @@ package com.example.munglog.community.service;
 import com.example.munglog.community.domain.Comment;
 import com.example.munglog.community.dto.CommentDTO;
 import com.example.munglog.community.repository.CommentRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

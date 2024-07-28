@@ -3,6 +3,7 @@ package com.example.munglog.carelog.service;
 import com.example.munglog.carelog.domain.CareLog;
 import com.example.munglog.carelog.dto.CareLogDTO;
 import com.example.munglog.carelog.repository.CareLogRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
