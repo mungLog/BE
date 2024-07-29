@@ -1,12 +1,18 @@
 package com.example.munglog.community.dto;
 
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+
+@Data
 public class CommentDTO {
 
     private Long id;
     private Long postId;
     private Long userId;
     private String content;
-    private String timestamp;
+    private LocalDateTime timestamp;
 
 
     public Long getId() {
@@ -41,11 +47,5 @@ public class CommentDTO {
         this.content = content;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -29,7 +30,7 @@ public class PetService {
         pet.setAge(petDTO.getAge());
         pet.setWeight(petDTO.getWeight());
         pet.setDate(LocalDate.parse(petDTO.getDate()));
-        pet.setTimestamp(petDTO.getTimestamp());
+        pet.setTimestamp(LocalDateTime.parse(petDTO.getTimestamp().toString()));
         pet.setNeutered(petDTO.isNeutered());
         pet.setGender(petDTO.getGender());  // 성별 추가
 

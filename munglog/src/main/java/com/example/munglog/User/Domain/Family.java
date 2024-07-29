@@ -1,5 +1,6 @@
 package com.example.munglog.User.Domain;
 
+import com.example.munglog.pet.domain.Pet;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.HashSet;
@@ -22,12 +23,14 @@ public class Family {
     )
     private Set<User> users = new HashSet<>();
 
-//    @OneToMany(mappedBy = "family", cascade = CascadeType.ALL)
-//    private Set<Pet> animals = new HashSet<>();
-//
+    @OneToMany(mappedBy = "family", cascade = CascadeType.ALL)
+    private Set<Pet> animals = new HashSet<>();
+
 
     @ManyToOne
     @JoinColumn(name = "family_id")
     private Family family;
+
+
 
 }

@@ -28,7 +28,7 @@ public class CommunityPostService {
         post.setTitle(postDTO.getTitle());
         post.setContent(postDTO.getContent());
         post.setCategory(postDTO.getCategory());
-        post.setTimestamp(LocalDateTime.parse(postDTO.getTimestamp()));
+        post.setTimestamp(LocalDateTime.parse(postDTO.getTimestamp().toString()));
 
         String imageUrl = imageUtil.saveImage(file);
         post.setImageUrl(imageUrl);
@@ -49,7 +49,7 @@ public class CommunityPostService {
             postDTO.setTitle(post.getTitle());
             postDTO.setContent(post.getContent());
             postDTO.setCategory(post.getCategory());
-            postDTO.setTimestamp(post.getTimestamp().toString());
+            postDTO.setTimestamp(LocalDateTime.parse(post.getTimestamp().toString()));
             postDTO.setImageUrl(post.getImageUrl());
             return postDTO;
         }
@@ -64,7 +64,7 @@ public class CommunityPostService {
             post.setTitle(postDTO.getTitle());
             post.setContent(postDTO.getContent());
             post.setCategory(postDTO.getCategory());
-            post.setTimestamp(LocalDateTime.parse(postDTO.getTimestamp()));
+            post.setTimestamp(LocalDateTime.parse(postDTO.getTimestamp().toString()));
 
             String imageUrl = imageUtil.saveImage(file);
             post.setImageUrl(imageUrl);

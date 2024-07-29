@@ -1,5 +1,10 @@
 package com.example.munglog.carelog.dto;
 
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
 public class CareLogDTO {
 
     private Long id;
@@ -8,7 +13,7 @@ public class CareLogDTO {
     private String type;
     private String description;
     private String date;
-    private String timestamp;
+    private LocalDateTime timestamp;
 
     // Getters and setters
     public Long getId() {
@@ -59,11 +64,5 @@ public class CareLogDTO {
         this.date = date;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
 }

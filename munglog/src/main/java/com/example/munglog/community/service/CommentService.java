@@ -16,12 +16,15 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
+
+
     public CommentDTO createComment(CommentDTO commentDTO) {
         Comment comment = new Comment();
         comment.setPostId(commentDTO.getPostId());
         comment.setUserId(commentDTO.getUserId());
         comment.setContent(commentDTO.getContent());
-        comment.setTimestamp(LocalDateTime.parse(commentDTO.getTimestamp()));
+        comment.setTimestamp(LocalDateTime.parse(comment.getTimestamp().toString()));
+
 
         comment = commentRepository.save(comment);
         commentDTO.setId(comment.getId());
@@ -37,7 +40,7 @@ public class CommentService {
             commentDTO.setPostId(comment.getPostId());
             commentDTO.setUserId(comment.getUserId());
             commentDTO.setContent(comment.getContent());
-            commentDTO.setTimestamp(comment.getTimestamp().toString());
+            commentDTO.setTimestamp(LocalDateTime.parse(comment.getTimestamp().toString()));
             return commentDTO;
         }
         return null;
@@ -50,7 +53,7 @@ public class CommentService {
             comment.setPostId(commentDTO.getPostId());
             comment.setUserId(commentDTO.getUserId());
             comment.setContent(commentDTO.getContent());
-            comment.setTimestamp(LocalDateTime.parse(commentDTO.getTimestamp()));
+            comment.setTimestamp(LocalDateTime.parse(comment.getTimestamp().toString()));
 
             comment = commentRepository.save(comment);
             commentDTO.setId(comment.getId());

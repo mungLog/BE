@@ -1,13 +1,14 @@
 package com.example.munglog.pet.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.munglog.User.Domain.Family;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
+@Data
 public class Pet {
 
     @Id
@@ -20,7 +21,7 @@ public class Pet {
     private int age;
     private double weight;
     private LocalDate date;
-    private String timestamp;
+    private LocalDateTime timestamp;
     private String imageUrl;
     private boolean neutered;
     private String gender;  // 성별 추가
@@ -82,11 +83,11 @@ public class Pet {
         this.date = date;
     }
 
-    public String getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -113,4 +114,8 @@ public class Pet {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "family_id")
+    private Family family;
 }

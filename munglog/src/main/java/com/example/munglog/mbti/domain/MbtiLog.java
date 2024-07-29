@@ -4,10 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
+@Data
 public class MbtiLog {
 
     @Id
@@ -17,7 +20,7 @@ public class MbtiLog {
     private Long userId;
     private String mbti;
     private LocalDate date;
-    private String timestamp;
+    private LocalDateTime timestamp;
 
     // Getters and setters
     public Long getId() {
@@ -52,11 +55,5 @@ public class MbtiLog {
         this.date = date;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
 }

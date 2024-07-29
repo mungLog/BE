@@ -1,5 +1,10 @@
 package com.example.munglog.exercise.dto;
 
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
 public class ExerciseLogDTO {
 
     private Long id;
@@ -8,7 +13,7 @@ public class ExerciseLogDTO {
     private double duration;
     private String type;
     private double distance;
-    private String timestamp;
+    private LocalDateTime timestamp;
 
     // Getters and setters
     public Long getId() {
@@ -59,11 +64,5 @@ public class ExerciseLogDTO {
         this.distance = distance;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
 }

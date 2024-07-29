@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/")
 public class AuthController {
 
 
     private final AuthService authService;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity<String> getMemberProfile(
             @Valid @RequestBody LoginRequestDto request
     ) {

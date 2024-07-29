@@ -1,13 +1,18 @@
 package com.example.munglog.mbti.dto;
 
 
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
 public class MbtiLogDTO {
 
     private Long id;
     private Long userId;
     private String mbti;
     private String date;
-    private String timestamp;
+    private LocalDateTime timestamp;
 
     // Getters and setters
     public Long getId() {
@@ -42,11 +47,5 @@ public class MbtiLogDTO {
         this.date = date;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
 }
