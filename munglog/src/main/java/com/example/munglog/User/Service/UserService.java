@@ -154,4 +154,14 @@ public class UserService {
     public List<User> searchUsers(String username) {
         return userRepository.findByUsernameContaining(username);
     }
+
+    public Optional<String> findUserId(String username, String phone) {
+        Optional<User> user = userRepository.findByUsernameAndPhone(username, phone);
+        return user.map(User::getUsername);
+    }
+
+    public Optional<String> findUserPassword(String userid, String username, String phone) {
+        Optional<User> user = userRepository.findByUseridAndUsernameAndPhone(userid, username, phone);
+        return user.map(User::getPassword);
+    }
 }

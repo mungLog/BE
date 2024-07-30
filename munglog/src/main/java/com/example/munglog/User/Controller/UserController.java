@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -54,7 +55,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/get")
+    @GetMapping("/user/{user_id}")
     public ResponseEntity<SignResponse> getUser(@RequestParam String userId) throws Exception {
         return new ResponseEntity<>(userService.getUser(userId), HttpStatus.OK);
     }
@@ -66,13 +67,13 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @PutMapping("/update")
+    @PutMapping("/user/update/{user_id}")
     public ResponseEntity<String> updateUserInformation(@RequestBody UserUpdateRequest request) {
         userService.updateUserInformation(request);
         return ResponseEntity.status(HttpStatus.OK).body("User information updated successfully.");
     }
 
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/user/delete/{user_id}")
     public ResponseEntity<String> deleteUser(@PathVariable String userId) {
         try {
             userService.deleteUser(userId);
@@ -82,7 +83,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{userId}/families/{familyId}")
+    @PostMapping("/family/{userId}/families/{familyId}")
     public User addUserToFamily(@PathVariable Long userId, @PathVariable Long familyId) {
         return userService.addUserToFamily(userId, familyId);
     }
@@ -92,8 +93,31 @@ public class UserController {
         return userService.requestFamilyMembership(userId, familyId);
     }
 
-    @GetMapping("/search")
+    @GetMapping("/family/search/{user_id}")
     public List<User> searchUsers(@RequestParam String username) {
         return userService.searchUsers(username);
+    }
+
+    @PostMapping("/users/findid")
+    public ResponseEntity<String> findUserId(@RequestBody Map<String, String> request) {
+        String username = request.get("username");
+        String phone = request.get("phone");
+
+        Optional<String> userId = userService.findUserId(username, phone);
+
+        return userId.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(404).body("User not found"));
+    }
+
+    @PostMapping("/users/findpw")
+    public ResponseEntity<String> findUserPassword(@RequestBody Map<String, String> request) {
+        String userid = request.get("userid");
+        String username = request.get("username");
+        String phone = request.get("phone");
+
+        Optional<String> userPassword = userService.findUserPassword(userid, username, phone);
+
+        return userPassword.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(404).body("User not found"));
     }
 }

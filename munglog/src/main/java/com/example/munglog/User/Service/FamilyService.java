@@ -7,6 +7,7 @@ import com.example.munglog.pet.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -30,5 +31,9 @@ import java.util.Set;
                     .map(Family::getAnimals)
                     .orElse(null);
         }
+
+    public Optional<Family> getFamilyById(Long familyId) {
+        return familyRepository.findById(familyId);
+    }
 }
 
