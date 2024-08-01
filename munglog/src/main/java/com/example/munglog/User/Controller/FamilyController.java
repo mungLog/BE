@@ -44,7 +44,7 @@ public class FamilyController {
             return familyService.addAnimalToFamily(familyId, animal);
         }
 
-        @GetMapping("/{familyId}/{pet_id}")
+        @GetMapping("/{user_id}/{pet_id}")
         public Set<Pet> getFamilyAnimals(@PathVariable Long familyId) {
             return familyService.getFamilyAnimals(familyId);
         }
