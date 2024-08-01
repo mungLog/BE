@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/posts/{post_id}/comments")
 public class CommentController {
@@ -33,5 +35,10 @@ public class CommentController {
     public ResponseEntity<Void> deleteComment(@PathVariable Long comment_id) {
         commentService.deleteComment(comment_id);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping("/allcomment")
+    public ResponseEntity<List<CommentDTO>> getAllComments(@PathVariable Long post_id) {
+        List<CommentDTO> comments = commentService.getAllCommentsByPostId(post_id);
+        return ResponseEntity.ok(comments);
     }
 }

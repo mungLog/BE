@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CommunityPostService {
@@ -79,5 +81,20 @@ public class CommunityPostService {
 
     public void deletePost(Long postId) {
         communityPostRepository.deleteById(postId);
+    }
+
+
+    public List<CommunityPostDTO> getAllPosts() {
+        List<CommunityPost> posts = communityPostRepository.findAll();
+        return posts.stream().map(post -> {
+            CommunityPostDTO postDTO = new CommunityPostDTO();
+            postDTO.setId(post.getId());
+            postDTO.setTitle(post.getTitle());
+            postDTO.setContent(post.getContent());
+            postDTO.setCategory(post.getCategory());
+            postDTO.setTimestamp(post.getTimestamp());
+            postDTO.setImageUrl(post.getImageUrl());
+            return postDTO;
+        }).collect(Collectors.toList());
     }
 }

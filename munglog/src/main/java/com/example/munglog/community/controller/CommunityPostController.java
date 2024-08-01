@@ -1,6 +1,5 @@
 package com.example.munglog.community.controller;
 
-
 import com.example.munglog.community.dto.CommunityPostDTO;
 import com.example.munglog.community.service.CommunityPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
@@ -36,5 +36,11 @@ public class CommunityPostController {
     public ResponseEntity<Void> deletePost(@PathVariable Long post_id) {
         communityPostService.deletePost(post_id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/allpost")
+    public ResponseEntity<List<CommunityPostDTO>> getAllPosts() {
+        List<CommunityPostDTO> posts = communityPostService.getAllPosts();
+        return ResponseEntity.ok(posts);
     }
 }

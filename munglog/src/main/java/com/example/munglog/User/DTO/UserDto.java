@@ -23,5 +23,7 @@ public class UserDto {
     private String phone;
     private String Nickname;
     private boolean Roles;
+    private String accessToken;
 }
+
 
