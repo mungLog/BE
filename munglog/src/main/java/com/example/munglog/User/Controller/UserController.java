@@ -4,7 +4,6 @@ import com.example.munglog.User.DTO.*;
 import com.example.munglog.User.Domain.FamilyRequest;
 import com.example.munglog.User.Domain.User;
 import com.example.munglog.User.Repository.UserRepository;
-import com.example.munglog.User.Service.AuthService;
 import com.example.munglog.User.Service.UserService;
 import com.example.munglog.User.config.CommonResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +16,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -93,10 +91,11 @@ public class UserController {
         return userService.requestFamilyMembership(userId, familyId);
     }
 
-    @GetMapping("/family/search/{user_id}")
-    public List<User> searchUsers(@RequestParam String username) {
-        return userService.searchUsers(username);
+    @GetMapping("/family/search")
+    public User searchUsers(@RequestParam("userId") String userId) {
+        return userService.searchUsers(userId);
     }
+
 
     @PostMapping("/users/findid")
     public ResponseEntity<String> findUserId(@RequestBody Map<String, String> request) {

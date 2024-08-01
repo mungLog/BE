@@ -1,5 +1,6 @@
 package com.example.munglog.User.Repository;
 
+import com.example.munglog.User.DTO.UserIdRequest;
 import com.example.munglog.User.Domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
         @Query("SELECT u FROM User u WHERE u.username = :username")
         Optional<User> findOneWithAuthoritiesByUsername(@Param("username") String username);
 
-        List<User> findByUsernameContaining(String username);
+        User findByUseridContaining(String userId);
 
         Optional<User> findByUsernameAndPhone(String username, String phone);
         Optional<User> findByUseridAndUsernameAndPhone(String userid, String username, String phone);

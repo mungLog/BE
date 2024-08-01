@@ -2,6 +2,7 @@ package com.example.munglog.User.Service;
 
 import com.example.munglog.User.DTO.SignResponse;
 import com.example.munglog.User.DTO.UserDto;
+import com.example.munglog.User.DTO.UserIdRequest;
 import com.example.munglog.User.DTO.UserUpdateRequest;
 import com.example.munglog.User.Domain.Family;
 import com.example.munglog.User.Domain.FamilyRequest;
@@ -151,8 +152,8 @@ public class UserService {
         return false;
     }
 
-    public List<User> searchUsers(String username) {
-        return userRepository.findByUsernameContaining(username);
+    public User searchUsers(String userId) {
+        return userRepository.findByUseridContaining(userId);
     }
 
     public Optional<String> findUserId(String username, String phone) {

@@ -1,6 +1,5 @@
 package com.example.munglog.User.config;
 
-
 import com.example.munglog.User.JWT.JWTUtil;
 import com.example.munglog.User.Service.CustomUserDetailsService;
 import lombok.AllArgsConstructor;
@@ -12,11 +11,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-
 
 @Configuration
 @EnableWebSecurity
@@ -48,7 +44,6 @@ public class SecurityContext  {
         http.formLogin((form) -> form.disable());
         http.httpBasic(AbstractHttpConfigurer::disable);
 
-
         //JwtAuthFilter를 UsernamePasswordAuthenticationFilter 앞에 추가
         http.addFilterBefore(new JwtAuthFilter(customUserDetailsService, jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
@@ -65,6 +60,4 @@ public class SecurityContext  {
 
         return http.build();
     }
-
-
 }
