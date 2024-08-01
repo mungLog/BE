@@ -44,15 +44,14 @@ public class JWTUtil {
      * @param expireTime
      * @return JWT String
      */
-    private String createToken(CustomUserInfoDto member, long expireTime) {
+    public String createToken(CustomUserInfoDto member, long expireTime) {
         Claims claims = Jwts.claims();
-        claims.put("memberId", member.getUserid());
+        claims.put("memberId", member.getUserid()); // Ensure getUserid() returns Long
         claims.put("email", member.getEmail());
         claims.put("role", member.isRoles());
 
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime tokenValidity = now.plusSeconds(expireTime);
-
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -63,13 +62,19 @@ public class JWTUtil {
     }
 
 
+
     /**
      * Token에서 User ID 추출
      * @param token
      * @return User ID
      */
     public Long getUserId(String token) {
-        return parseClaims(token).get("memberId", Long.class);
+        Claims claims = parseClaims(token);
+        Object memberId = claims.get("memberId");
+        if (memberId instanceof Number) {
+            return ((Number) memberId).longValue();
+        }
+        throw new IllegalArgumentException("Invalid memberId claim");
     }
 
 
